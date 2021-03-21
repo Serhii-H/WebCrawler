@@ -1,0 +1,33 @@
+<div>
+  <button type="button" (click)="goToHomePage()" class="btn btn-link float-right">Go back to the list</button>
+</div>
+
+<div *ngIf="crawlingDetails$ | async let details; else loadingBlock">
+  <div *ngIf="details?.length; else noDataBlock">
+    <table class="table table-bordered;">
+      <caption>
+        <h4>Crawling results for "{{expression}}"</h4>
+      </caption>
+      <thead>
+        <tr>
+          <th>Url</th>
+          <th>Number of hits</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let detail of details'>
+          <td>{{detail.url}}</td>
+          <td>{{detail.hitsCount}}</td>
+          <td><a href="{{detail.url}}" target="_blank">Open in a new tab</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #noDataBlock>
+    <div class="alert alert-info" role="alert">No data to display. Probably the job is still running.</div>
+  </ng-template>
+</div>
+<ng-template #loadingBlock>
+  <div class="alert alert-info" role="alert">Loading...</div>
+</ng-template>

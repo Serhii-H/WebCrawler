@@ -1,0 +1,50 @@
+<div *ngIf="crawlings$ | async let crawling; else dataLoadingTemplate">
+  <div *ngIf="crawling?.length; else noCrawlingsCreated">
+    <div class="mb-3">
+      <button type="button" class="btn btn-success" [routerLink]="['/new']">Schedule a new Crawling</button>
+      <button type="button" class="btn btn-light float-right" (click)="refresh()">Refresh</button>
+    </div>
+
+    <div>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Url</th>
+            <th>Expression</th>
+            <th>Number of hits</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let crawling of crawling'>
+            <td>{{crawling.status}}</td>
+            <td>{{crawling.createdOn | date}}</td>
+            <td>{{crawling.url}}</td>
+            <td>{{crawling.expression}}</td>
+            <td>{{crawling.hitsCount}}</td>
+            <td>
+              <button *ngIf="crawling.status === 'Completed'"
+                      type="button"
+                      (click)="openDetails(crawling.id, crawling.expression)"
+                      class="btn btn-link">
+                Details
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <ng-template #noCrawlingsCreated>
+    <div class="alert alert-info" role="alert">
+      Oops, it seems like you haven't scheduled any Crawling request yet. Would you like to <a [routerLink]="['/new']">schedule the first one</a>?
+    </div>
+  </ng-template>
+</div>
+
+<ng-template #dataLoadingTemplate>
+  Loading ...
+</ng-template>

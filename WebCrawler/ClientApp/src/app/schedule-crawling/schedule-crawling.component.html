@@ -1,0 +1,44 @@
+<h4>Scheduling a new crawling</h4>
+
+<div class="row">
+  <div class="col-sm-6">
+    <form class="mt-5" [formGroup]="formGroup" (ngSubmit)="scheduleCrawling()">
+      <div class="form-group">
+        <label for="expression">Expression</label>
+        <input id="expression"
+               type="text"
+               class="form-control"
+               formControlName="expression"
+               autofocus>
+        <div *ngIf="expression.invalid && (expression.dirty || expression.touched)" class="alert alert-danger mt-3">
+          <div *ngIf="expression.errors?.required">Expression is required.</div>
+          <div *ngIf="expression.errors?.minlength">Must contain at least 3 characters.</div>
+          <div *ngIf="expression.errors?.maxlength">Cannot be longer than 50 characters.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="url">URL</label>
+        <input id="url"
+               type="url"
+               class="form-control"
+               formControlName="url">
+        <small id="emailHelp" class="form-text text-muted">URL must start with schema and domain: http://test.com</small>
+        <div *ngIf="url.invalid && (url.dirty || url.touched)" class="alert alert-danger mt-3">
+          <div *ngIf="url.errors?.required">URL is required.</div>
+          <div *ngIf="url.errors?.pattern">Please specify valid URL address.</div>
+          <div *ngIf="url.errors?.maxlength">Cannot be longer than 500 characters.</div>
+        </div>
+      </div>
+
+      <div class="alert alert-info" role="alert" *ngIf="statusMessage">
+        {{statusMessage}}
+      </div>
+
+      <div class="mt-5">
+        <button type="submit" class="btn btn-success" [disabled]="isLoading">Schedule</button>
+        &nbsp;
+        <button type="button" (click)="goToHomePage()" class="btn btn-link" [disabled]="isLoading">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
