@@ -2,7 +2,7 @@
 
 Hi there. This is a repo of one test project the main purpose of which is to crawl web pages and count the occurrence of a particular expression on them.
 
-The App itself is SPA which built based on one of the .Net Core template (dotnet new angular -o <output_directory_name> -au Individual) in order to don't waste time on adding all the basic stuff including authentication, authorization and so on. There is Angular on FE, and .Net Core on BE.
+The App itself is SPA which built based on one of the .Net Core templates (dotnet new angular -o <output_directory_name> -au Individual) in order to don't waste time on adding all the basic stuff including authentication, authorization and so on. There is Angular on FE, and .Net Core on BE.
 
 In order to launch the App locally you need:
 1) Provide a valid connections string in appsettings.json
