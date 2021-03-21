@@ -1,4 +1,4 @@
-<div>
+<div class="clearfix">
   <button type="button" (click)="goToHomePage()" class="btn btn-link float-right">Go back to the list</button>
 </div>
 
@@ -25,7 +25,7 @@
     </table>
   </div>
   <ng-template #noDataBlock>
-    <div class="alert alert-info" role="alert">No data to display. Probably the job is still running.</div>
+    <div class="alert alert-info" role="alert">No data to display. Probably nothing was found within the provided URL.</div>
   </ng-template>
 </div>
 <ng-template #loadingBlock>
